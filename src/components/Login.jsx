@@ -62,7 +62,12 @@ const Login = () => {
                     </div>
                     <button className="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-600 transition mt-6">Login</button>
                 </form>
-                <p className="flex justify-between pt-5 text-[#696969]">don't have an account? <Link to="/sign-up">SignUp</Link></p>
+                <div className="text-center">
+                    <p className="  pt-5 text-[#696969] text-sm font-normal">don't have an account?{" "} <Link to="/sign-up" className="text-blue-700 font-semibold hover:underline">SignUp</Link></p>
+                </div>
+                <div className="text-center text-[#696969] text-sm font-normal pt-5 ">
+                    <button className="hover:underline">Forgot your password?</button>
+                </div>
 
             </div>
 
