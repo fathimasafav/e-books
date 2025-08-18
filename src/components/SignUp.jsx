@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { FiBookOpen } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 const SignUp = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
-    const [password, setPassword] = ("")
+    const [password, setPassword] =useState ("")
     const [showPassword, setShowPassword] = useState(false);
     const[confirmPassword,setConfirmPassword]=useState(false);
+    const navigate= useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -22,7 +23,8 @@ const SignUp = () => {
             const data = await res.json();
 
             if (res.ok) {
-                alert("Signup successfully")
+                localStorage.setItem("token",data.data.token);
+                navigate("/home");
             } else {
                 alert(data.message || "Signup failed")
             }
@@ -35,7 +37,7 @@ const SignUp = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#eaf0fd]" >
-            <div className="bg-white p-8 max-w-[500px] rounded-2xl shadow-md">
+            <div className="bg-white p-8 w-md rounded-2xl shadow-md">
                 <div className="flex items-center justify-center">
                     <FiBookOpen className="text-blue-700 text-3xl" />
                 </div>
@@ -86,7 +88,9 @@ const SignUp = () => {
                             className=" w-full px-4 py-2 rounded-md text-sm font-medium focus:outline-none  bg-[#eaf0fd]"
                         />
                     </div>
-                    <button className="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-600 transition mt-6">Sign Up</button>
+                    <button
+                    type="sumit"
+                     className="w-full bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-600 transition mt-6">Sign Up</button>
                 </form>
                 <p className="pt-5 text-[#696969] text-sm font-normal text-center">Already have an account?<Link to="/" className="text-blue-700 font-semibold hover:underline">Login</Link></p>
 

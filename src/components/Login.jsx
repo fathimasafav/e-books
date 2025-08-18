@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FiBookOpen } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -19,8 +20,8 @@ const Login = () => {
             const data = await res.json();
 
             if (res.ok) {
-                localStorage.setItem('token', data.token);
-                alert("login successfully")
+                localStorage.setItem('token', data.data.token);
+                navigate("/home")
             } else {
                 alert(data.error || 'Login failed')
             }
