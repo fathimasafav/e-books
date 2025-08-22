@@ -3,10 +3,10 @@ import { FiBookOpen } from "react-icons/fi";
 import { LuFacebook, LuTwitter, LuMail, LuInstagram } from "react-icons/lu";
 
 
-const Contact = () => {
+const Footer = () => {
     return (
         <div className="bg-[#005f7f]  pl-[100px] pr-[100px] pt-[50px] pb-[50px]">
-        <div className="flex justify-betweenpt-[50px] ">
+        <div className="flex justify-between pt-[50px] ">
             <div className="w-full">
                 <div className="items-center justify-center"><h1 className="flex gap-[2px] text-white text-2xl font-bold "><FiBookOpen className="text-[#facc15] text-3xl" />Literary</h1></div>
                 <p className="max-w-[60%] text-white">Your gateway to endless stories and knowledge. Discover, read, and grow with our curated collection.</p>
@@ -46,4 +46,4 @@ const Contact = () => {
 
     )
 }
-export default Contact
+export default Footer

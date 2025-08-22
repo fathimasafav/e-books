@@ -10,7 +10,7 @@ const HeroSection = () => {
                 <p className="text-sm font-medium text-[#facc15] flex items-center gap-2"><RiShining2Fill/>Curated Collection</p>
                 <h1 className="text-5xl font-bold text-white max-w-[70%]">Discover Your Next <span className="text-[#facc15]">Literary Adventure</span></h1>
                 <p className="text-xl text-white">Explore thousands of carefully curated books across every genre. From timeless classics to contemporary bestsellers.</p>
-                <div className="flex">
+                <div className="flex gap-[10px]">
                     <button className="bg-[#facc15] text-white rounded pl-[32px] pt-[12px] pr-[32px] pb-[12px]  gap-[5px] flex items-center text-center">Explore Collection <FaArrowRight /></button>
                     <button className="pt-[12px] pr-[32px] pb-[12px] pl-[32px] rounded bg-[#ffff]">View Bestsellers</button>
                 </div>

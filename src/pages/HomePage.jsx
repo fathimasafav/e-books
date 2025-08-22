@@ -7,20 +7,20 @@ import HeroSection from "../components/HeroSection";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineScience } from "react-icons/md";
 import { AiOutlineThunderbolt } from "react-icons/ai";
-import Contact from "../components/Contact";
 import News from "../components/NewsLetter";
 import { FaFire, FaStar, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 
 
 const categoryIcons = {
-    Thriller:<FaFire/>,
+    Thriller: <FaFire />,
     Fiction: <FiBook />,
-    Fantasy: <FaStar/>,
+    Fantasy: <FaStar />,
     Science: <MdOutlineScience />,
-    "Non-Fiction":<AiOutlineThunderbolt /> ,
-    Romance :<CiHeart/>,
+    "Non-Fiction": <AiOutlineThunderbolt />,
+    Romance: <CiHeart />,
 }
 
 const Home = () => {
@@ -83,16 +83,16 @@ const Home = () => {
                 <div className="items-center justify-center"><h1 className="flex gap-[2px] text-[#344256] text-2xl font-bold "><FiBookOpen className="text-[#344256] text-3xl" />Literary</h1></div>
                 <div className=""><Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} /></div>
                 <div className="flex justify-between ">
-                    <nav className=" flex gap-[16px] text-[#344256]">
-                        <a href="#">Home</a>
-                        <a href="#">Categories</a>
-                        <a href="#">BestSellers</a>
-                        <a href="#">New Arrival</a>
+                    <nav className=" flex gap-[16px] text-[#344256] ">
+                        <a href="#" className="hover:font-semibold">Home</a>
+                        <a href="#" className="hover:font-semibold">Categories</a>
+                        <a href="#" className="hover:font-semibold">BestSellers</a>
+                        <a href="#" className="hover:font-semibold">New Arrival</a>
                     </nav>
                 </div>
                 <div className="flex gap-[5px] gap-[10px]">
-                    <button className="text-[#344256]"><IoCartOutline /></button>
-                    <Link to="/profile"><button className="text-[#344256]"><FiUser /></button></Link>
+                    <Link to="/cart"><button className="text-[#344256] hover:bg-yellow-400 rounded p-2"><IoCartOutline /></button></Link>
+                    <Link to="/profile"><button className="text-[#344256] hover:bg-yellow-400 rounded p-2"><FiUser /></button></Link>
                 </div>
             </header>
             <HeroSection />
@@ -166,7 +166,7 @@ const Home = () => {
                 </div>
             </div>
             <News />
-            <Contact />
+            <Footer />
 
         </div>
 

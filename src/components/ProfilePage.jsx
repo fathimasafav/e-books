@@ -1,5 +1,7 @@
 // import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import Footer from "./Footer";
 
 
 const Profile = () => {
@@ -7,6 +9,7 @@ const Profile = () => {
     const [editMode, setEditMode] = useState(false);
     const [formData, setFormData] = useState({});
     const [preview, setPreview] = useState(null);
+    // const [gender, setGender] = useState("")
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -28,8 +31,11 @@ const Profile = () => {
         fetchUser();
     }, [])
 
+    // const HandleGender = (e) => {
+    //     setGender(e.target.value)
+    // }
 
-    const handleChange = (e) => {
+    const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -45,6 +51,12 @@ const Profile = () => {
             data.append("name", formData.name);
             data.append("email", formData.email);
             data.append("bio", formData.bio || "");
+            data.append("number", formData.number || "");
+            data.append("nationality", formData.nationality || "");
+            data.append("gender", formData.gender || "");
+            data.append("dob", formData.dob || "");
+
+
 
 
             if (formData.profilePic instanceof File) {
@@ -74,86 +86,159 @@ const Profile = () => {
     }
     if (!user) return <p>Loading...</p>
 
+
+
     return (
-        <div className="bg-[#005f7f] w-full h-full p-[100px] flex justify-center" >
-            <div className="flex flex-col w-[500px] h-full bg-white  p-[50px]  rounded-lg shadow-md ">
-                <p className="text-2xl font-bold">Profile</p>
-                <div className=" justify-items-center">
-                    <img
-                        src={preview || `http://localhost:4000${user.profilePic}`}
-                        alt="profile"
-                        className="w-32 h-32 rounded-full object-cover border "
-                    />
+        <div>
+            <div className="bg-[#005f7f] w-full h-full p-[100px] flex justify-center " >
+                <div className="flex flex-col w-[1000px] h-full bg-white  p-[50px]  rounded-lg shadow-md ">
+                    <p className="text-2xl font-bold">Profile</p>
+                    <div className=" justify-items-center relative">
+                        <img
+                            src={preview || `http://localhost:4000${user.profilePic}`}
+                            alt="profile"
+                            className="w-32 h-32 rounded-full object-cover border-2 border-gray-300 "
+                        />
 
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            className="  absolute  cursor-pointer top-1/2  left-1/2  -translate-x-1/2 -translate-y-1/2 absolute opacity-0 "
+                        />
+                    </div>
+                    <div className="text-center">
 
-                        className=" cursor-pointer left-[-50px]  bottom-[50px] opacity-0  "
-                    />
-                </div>
-                <div className="text-center">
-                    <h2 className="text-xl font-bold">{user.name}</h2>
-                    <p className="font-semibold">{user.email}</p>
-                    <p>{user.bio}</p>
-                </div>
-                {editMode && (
-                    <div className="flex flex-col ">
-                        <div className="flex flex-col mb-2">
-                            <label className="font-semibold ">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name || ""}
-                            onChange={handleChange}
-                            placeholder="Name"
-                        />
-                        </div>
-                        <div className="flex flex-col mb-2">
-                            <label className="font-semibold " >Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email || ""}
-                            onChange={handleChange}
-                            placeholder="Email"
-                        />
-                        </div>
-                        <div className="flex flex-col mb-2">
-                            <label className="font-semibold ">Bio</label>
-                        <textarea
-                            name="bio"
-                            value={formData.bio || ""}
-                            onChange={handleChange}
-                            placeholder="bio"
-                        />
+                        <div className="mb-5">
+                            <p className="font-semibold">{user.name}</p>
+                            <p className="font-semibold">{user.email}</p>
+                            <p className="font-semibold">{user.bio}</p>
+
                         </div>
                     </div>
-                )}
 
-                <div className=" flex justify-center ">
-                    {editMode ? (
-                        <div className="flex gap-[5px]">
-                            <button onClick={handleSave}>Save</button>
-                            <button
-                                onClick={() => {
-                                    setEditMode(false);
-                                    setPreview(null);
-                                    setFormData(user)
-                                }
-                                }
-                            >Cancel</button>
+
+                    <div className="flex w-full gap-[20px] ">
+                        <div className="w-[50%]">
+                            <div className="flex justify-between">
+                                <h3 className="font-bold mb-2">Personal Details</h3>
+                                <button onClick={() => setEditMode(!editMode)}>{editMode ? 'Cancel' : <CiEdit />}</button>
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700 ">Full Name:</span>
+                                {editMode ? (
+                                    <input type="text" name="fullName" value={formData.name || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.name}</span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className=" text-gray-700">Date of Birth:</span>
+                                {editMode ? (
+                                    <input type="Date" name="date" value={formData.dob || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-medium text-gray-900">{user.dob}</span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Gender:</span>
+                                {editMode ? (
+                                    <select name="gender" value={formData.gender || ""} onChange={handleInputChange} className="border p-1 rounded text-right">
+                                        <option>Female</option>
+                                        <option>Male</option>
+                                    </select>
+                                ) : (
+                                        <span className=" font-normal text-gray-900 ">{user.gender}</span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Nationality:</span>
+                                {editMode ? (
+                                    <input type="text" name="nationality" value={formData.nationality || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.nationality}</span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Phone Number:</span>
+                                {editMode ? (
+                                    <input type="number" name="number" value={formData.number || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.number}</span>
+                                )}
+                            </div>
+
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Address:</span>
+                                {editMode ? (
+                                    <input type="text" name="address" value={formData.address || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.address}</span>
+                                )}
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Bio:</span>
+                                {editMode ? (
+                                    <textarea rows="3" name="bio" value={formData.bio || ''} onChange={handleInputChange} className="border p-1 rounded text-right" placeholder="Tell us a little about yourself..." />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.bio}</span>
+                                )}
+                            </div>
+
+
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Email:</span>
+                                {editMode ? (
+                                    <input type="text" name="email" value={formData.email || ''} onChange={handleInputChange} className="border p-1 rounded text-right" />
+                                ) : (
+                                        <span className="font-normal text-gray-900">{user.email}</span>
+                                )}
+                            </div>
+                         
+
                         </div>
-                    ) : (
-                        <button
-                         onClick={() =>setEditMode(true)}
-                                className="mt-5 font-bold "
-                         > Edit Profile</button>
-                    )}
+                        <div className="w-[50%]" >
+                            <h1 className="font-bold mb-2">Account Details</h1>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700 w-full"> Account Created:</span>
+                                <span  className="w-full">{user.createdAt}</span>
+                            </div>
+
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700 w-full">Account Updated:</span>
+                                <span className="w-full">{user.updatedAt}</span>
+                            </div>
+                            <div className="flex justify-between items-center border-b pb-2 border-gray-200">
+                                <span className="font-medium text-gray-700">Language Perfernce:</span>
+                                {editMode ? (
+                                    <select name="language" value={formData.language || ""} onChange={handleInputChange} className="border p-1 rounded text-right">
+                                        <option>English</option>
+                                        <option>Malayalam</option>
+                                    </select>
+                                ) : (
+                                        <span className=" font-normal text-gray-900 ">{user.language}</span>
+                                )}
+                            </div>
+
+                        </div>
+                    </div>
+                    {
+                        editMode && (
+                            <div>
+                                <button onClick={handleSave}>save change</button>
+                            </div>
+                        )
+                    }
+
                 </div>
-            </div>
-        </div >
+                <div>
+
+                </div>
+
+            </div >
+            <div> <Footer /></div>
+        </div>
+
     )
 
 
