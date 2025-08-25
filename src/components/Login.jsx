@@ -18,9 +18,10 @@ const Login = () => {
             });
 
             const data = await res.json();
-
+            console.log(data,'u8huhu')
             if (res.ok) {
                 localStorage.setItem('token', data.data.token);
+localStorage.setItem('userId',data.data.user._id)
                 navigate("/home")
             } else {
                 alert(data.error || 'Login failed')

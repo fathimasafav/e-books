@@ -91,7 +91,7 @@ const Home = () => {
                     </nav>
                 </div>
                 <div className="flex gap-[5px] gap-[10px]">
-                    <Link to="/cart"><button className="text-[#344256] hover:bg-yellow-400 rounded p-2"><IoCartOutline /></button></Link>
+                    <Link to="/CartPage"><button className="text-[#344256] hover:bg-yellow-400 rounded p-2"><IoCartOutline /></button></Link>
                     <Link to="/profile"><button className="text-[#344256] hover:bg-yellow-400 rounded p-2"><FiUser /></button></Link>
                 </div>
             </header>
