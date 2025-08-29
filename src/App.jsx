@@ -5,6 +5,7 @@ import SignUp from './components/SignUp'
 import Home from "./pages/HomePage"
 import Profile from "./components/ProfilePage"
 import CartPage from "./pages/CartPage"
+import ImagesPage from "./pages/ImagesPage"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cartpage" element={<CartPage />}/>
+        <Route path="/images" element={<ImagesPage/>}></Route>
 
       </Routes>
     </Router>

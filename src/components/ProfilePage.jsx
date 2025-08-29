@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Footer from "./Footer";
+import Header from "./Header";
 
 
 const Profile = () => {
@@ -90,8 +91,10 @@ const Profile = () => {
 
     return (
         <div>
-            <div className="bg-[#005f7f] w-full h-full p-[100px] flex justify-center " >
-                <div className="flex flex-col w-[1000px] h-full bg-white  p-[50px]  rounded-lg shadow-md ">
+            <Header/>
+            <div className=" ">
+            <div className="bg-[#005f7f] w-full h-full p-[100px] flex justify-center dark:bg-[#2e3949] rounded-2 mb-[50px]" >
+                <div className="flex flex-col w-[1000px] h-full bg-white  p-[50px]  rounded-lg shadow-md  dark:bg-[#29313d]">
                     <p className="text-2xl font-bold">Profile</p>
                     <div className=" justify-items-center relative">
                         <img
@@ -233,6 +236,7 @@ const Profile = () => {
                 </div>
                 <div>
 
+                </div>
                 </div>
 
             </div >

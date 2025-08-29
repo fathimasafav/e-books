@@ -39,7 +39,7 @@ const BookCard = ({ book }) => {
     // console.log(coverImage, "cover");
 
     return (
-        <div className=" rounded p-[16px] shadow-md ">
+        <div className=" rounded p-[16px] shadow-md dark:bg-[#29313d]">
 
             <div className="grid rounded-lg hover:scale-105 transition-all duration-300 relative group">
                 <img
@@ -47,9 +47,9 @@ const BookCard = ({ book }) => {
                     alt={book.title}
                     className="w-full max-h-[450px] object-cover rounded"
                 />
-                <h3 className="font-semibold text-[#344256] ">{book.title}</h3>
-                <p className="text-sm text-[#344256]">by {book.author}</p>
-                <p className="text-lg font-bold text-[#344256]">${book.price}</p>
+                <h3 className="font-semibold text-[#344256] dark:text-white">{book.title}</h3>
+                <p className="text-sm text-[#344256] dark:text-[#a4afbc]">by {book.author}</p>
+                <p className="text-lg font-bold text-[#344256] dark:text-white">${book.price}</p>
                 <p className="text-sm text-[#344256] flex items-center gap-2"><FaStar className="text-[#facc15]" />{book.rating}</p>
                 <div className=" absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col ">
                     <div className=""><button onClick={HandleAddToCart} className="flex items-center   text-[#344256] bg-yellow-400 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4 py-2 " ><IoCartOutline /> </button></div>
